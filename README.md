@@ -2,6 +2,8 @@
 
 **A preregistered study of rule-induced AI monitor diversity, correlated misses, and ensemble complementarity.**
 
+> **Current empirical status:** No confirmatory SLEIGHT results have been generated. Synthetic outputs, where used, are engineering-validation artifacts only.
+
 ## Research question
 
 AI safety systems increasingly rely on multiple monitors, evaluators, prompts, or auditing procedures. But multiple monitors do not automatically provide multiple independent lines of oversight.
@@ -88,7 +90,6 @@ A reduction in OR-ensemble joint miss alone is not treated as sufficient evidenc
 - [`STATUS.md`](STATUS.md) — current state and blocker
 - [`docs/DATA_BOUNDARIES.md`](docs/DATA_BOUNDARIES.md) — public/private data boundaries
 - [`docs/OUTREACH_NOTES.md`](docs/OUTREACH_NOTES.md) — external communication discipline
-- [`PUSH_TO_GITHUB.md`](PUSH_TO_GITHUB.md) — publication steps
 
 ## External reference
 
