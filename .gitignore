@@ -1,0 +1,28 @@
+# Credentials
+.env
+.env.*
+*.key
+secrets.*
+
+# Benchmark data
+**/transcript.jsonl
+**/benign.jsonl
+**/transcript_non_triggering.jsonl
+**/encrypted.bin
+sleight-bench/
+benchmark_data/
+data/private/
+
+# Raw provider runs
+runs/
+raw_requests/
+raw_responses/
+
+# Local
+__pycache__/
+*.pyc
+.venv/
+venv/
+.vscode/
+.DS_Store
+Thumbs.db
