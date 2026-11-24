@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>新主体·认知判断训练Ⅰ</title>
+<style>
+:root{--bg:#f1efe9;--paper:#fffdf8;--ink:#1f2328;--muted:#6b6f73;--line:#d7d1c7;--red:#8a211c;--red2:#a9372f;--green:#205f40;--gold:#a1661c;--soft:#f5f0e6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Microsoft YaHei",serif;line-height:1.72}
+.hero{background:linear-gradient(135deg,#6e1715,#a22b25);color:white;padding:48px 18px 36px}
+.wrap{max-width:980px;margin:auto}
+.kicker{font-size:13px;letter-spacing:.14em;opacity:.82}.hero h1{font-size:clamp(29px,5vw,47px);margin:8px 0 5px}.hero p{margin:5px 0;opacity:.92}
+main{padding:24px 16px 70px}.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:22px;margin:16px 0;box-shadow:0 5px 18px #00000007}
+.notice{border-left:5px solid var(--red);background:#fff8f3}.section{display:inline-block;font-size:12px;font-weight:800;color:var(--red);background:#f3dfdc;padding:4px 9px;border-radius:999px}
+.qtitle{font-size:20px;font-weight:750;margin:10px 0 8px}.stem{margin:7px 0 15px}
+.option{display:block;background:#fff;border:1px solid var(--line);padding:12px 13px;border-radius:10px;margin:9px 0;cursor:pointer;transition:.13s}
+.option:hover{background:#fff9f5;border-color:#bba49e}.option input{margin-right:8px}
+.progress{height:8px;background:#ddd7ce;border-radius:99px;overflow:hidden;margin-top:14px}.progress div{height:100%;width:0;background:var(--red)}
+.small{font-size:13px;color:var(--muted)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+button{border:0;border-radius:10px;padding:12px 18px;font-size:15px;background:var(--red);color:#fff;cursor:pointer}button.secondary{background:#6d7074}
+#results{display:none}.score{font-size:27px;font-weight:800}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:14px}
+.metric{background:white;border:1px solid var(--line);border-radius:12px;padding:14px}.metric b{font-size:24px;color:var(--red)}
+.bar{height:7px;background:#ece7df;border-radius:99px;margin-top:8px;overflow:hidden}.bar span{display:block;height:100%;background:var(--green)}
+.answer{padding:11px 12px;border-radius:10px;margin:8px 0}.correct{background:#e8f4ec;color:#174a32}.wrong{background:#f8eae8;color:#762822}
+.trap{background:#fff2d9;border:1px dashed #c59a52;border-radius:10px;padding:12px;margin-top:12px}
+.knowledge{background:#f2f0e8;border-left:4px solid var(--gold);padding:13px 14px;border-radius:9px;margin-top:12px}.knowledge h4{margin:0 0 5px;color:#74480e}
+.toplink{color:white;text-decoration:none;opacity:.9;font-size:13px}.toplink:hover{text-decoration:underline}
+footer{color:var(--muted);font-size:13px;margin-top:30px}
+@media(max-width:600px){.card{padding:17px}.qtitle{font-size:18px}}
+</style>
+</head>
+<body>
+<section class="hero"><div class="wrap">
+<a class="toplink" href="../">← 返回思想免疫训练首页</a>
+<div class="kicker">新主体 · 认知判断训练Ⅰ</div>
+<h1>现实、经验、符号与判断</h1>
+<p>15道高难度判断题 · 不要求任何理论符号前置知识</p>
+</div></section>
+<main class="wrap">
+<section class="card notice">
+<h2>作答规则</h2>
+<p>每题只有一个“最准确”的答案。错误选项往往并非完全错误，而是在某一步把有限判断扩大成了更强的主张。</p>
+<p><strong>不要猜命题人的立场。</strong>判断一句话到底说到了哪里、证据支持到了哪里、又在哪一步多走了一步。</p>
+<div class="progress"><div id="prog"></div></div><p class="small" id="progText">0 / 15</p>
+</section>
+<section id="quiz"></section>
+<div class="actions"><button id="submit">提交并查看逐题解析</button><button class="secondary" id="reset">清空重做</button></div>
+<section id="results">
+<section class="card"><div class="score" id="score"></div><p id="summary"></p><div class="metrics" id="metrics"></div></section>
+<section class="card notice"><h2>解析说明</h2><p>解析不只告诉你“哪项对”，还会指出其他选项究竟多走了哪一步。每题最后附一张思想史或认识论知识卡。</p></section>
+<div id="analysis"></div>
+</section>
+<footer>材料范围：《序章 那条永远没有消失的地平线》《第一章 世界是什么以前：人先在哪里》《第二章 柏拉图：当理念成为现实的尺度》。本卷使用自然语言，不要求预先掌握任何符号体系。</footer>
+</main>
+<script>
+const base=[{"section":"现实与符号","title":"八分弧","stem":"开普勒长期相信天体运动应当具有圆的完美形式。他建立的圆轨道方案已经相当成功，但与第谷的火星观测资料相比，仍有约八角分的偏差。这个差异并不是开普勒直接“看见”的，而是在观测记录、模型与计算的比较中出现的。下列判断最准确的是：","options":["八分弧既然来自精确观测数据，它就是火星运动的现实本身。","八分弧经过仪器、记录和计算才出现，因此它只是人造符号，不能约束理论。","八分弧是人类在特定观测条件下获得的有限现象，它不能等同现实本身，却可以对圆轨道理论形成强烈的现实约束。","圆轨道模型曾长期有效，因此在当时它就是现实；后来只是现实发生了变化。"],"answer":2,"explanations":["问题在“就是”。观测数据与现实关系极强，但数据仍经过仪器、记录和计算形成，不能直接与现实本身同一。","恰好相反。经过中介不等于失去现实约束力；科学认识大量依靠仪器、记录和计算。","正确。这里同时保留了两点：有限现象不是现实整体，但现实可以通过这些现象对既有理论施加压力。","模型的成功属于认识上的有效性，不会把模型变成现实本身；火星也没有因为模型更换而改变自己的过去运动。"],"trap":"把可靠记录直接等同现实，或反过来把“有中介”误解成“没有现实资格”。","cardTitle":"八分弧","card":"开普勒面对的八角分偏差，不是肉眼直接看到的“现实碎片”，而是观测、记录和计算比较后显现的残差。它没有直接告诉开普勒“轨道一定是椭圆”，却使旧解释不能再毫无代价地维持。"},{"section":"现实与符号","title":"一个异常能证明什么","stem":"面对八角分差异，开普勒没有立即宣布“所以轨道一定是椭圆”，而是继续比较模型、计算和观测。这个处理最适合说明：","options":["一个反例出现后，旧理论的所有内容都自动失效。","异常可以迫使已有解释重新接受审查，但异常究竟来自模型、测量、计算还是适用条件，仍需要进一步区分。","只要异常存在多种可能来源，就应该继续保留原理论，不必修改。","现实只能否定理论，不能为新理论形成提供任何线索。"],"answer":1,"explanations":["反例通常针对具体主张和适用条件，不会自动摧毁一个理论的全部内容。","正确。现实压力并不附带唯一原因说明；严谨的工作是继续比较竞争性解释。","多种解释并不意味着旧理论获得豁免，只意味着需要进一步调查。","现实异常当然可以提供线索，只是不能把“出现异常”直接等同于“已经得到唯一正确的新解释”。"],"trap":"把“发现异常”直接升级成“已经知道异常原因”。","cardTitle":"异常与归因","card":"现实反馈不是一台自动裁决器。失配可能来自模型，也可能来自仪器、记录、计算或适用条件。异常的意义在于迫使调查重新打开，而不是替研究者完成全部归因。"},{"section":"现实与符号","title":"地图进入现实","stem":"一张地图原本用于描述土地。后来政府把它用于土地登记、征税和产权划分。几十年后，地图上的边界已经影响了住宅、道路和人口分布。有人说：“既然地图已经改变了现实，所以地图上的边界本来就是现实真正的边界。”最准确的判断是：","options":["地图可以通过制度和行动改变后来的现实，但“产生现实后果”不能倒过来证明地图最初的划分就是现实本身。","能够改变现实的符号已经取得了与现实相同的地位。","符号只能描述现实，因此地图不可能真正改变现实。","只要地图被长期接受，地图与现实的区别就会逐渐消失。"],"answer":0,"explanations":["正确。符号可以参与塑造现实，但塑造能力与描述正确性是不同问题。","这是把历史力量直接兑换成认识资格：能造成后果，不等于最初判断因此正确。","过于弱化符号的作用。法律、地图、分类和指标都可能通过组织与制度实际改变生活条件。","共识和长期制度化可以增加历史力量，却不能自动取消符号与现实的区别。"],"trap":"把“符号改变了现实”误写成“符号因此就是现实”。","cardTitle":"符号的历史力量","card":"符号不只是描述工具。进入登记、法律、预算、评价和组织程序后，它能够改变行动条件。问题在于：历史力量并不自动等于现实正确性。"},{"section":"现实与符号","title":"疼痛与原因","stem":"某工人在连续操作设备后说：“我的手腕正在疼。”企业回答：“目前没有工伤记录，因此无法证明存在问题。”工人进一步说：“既然我疼，所以一定是这台设备造成的。”下列判断最准确的是：","options":["没有进入正式记录，就不能确认疼痛真实发生。","疼痛真实发生即可证明设备是唯一原因。","两边只是立场不同，所以不存在可以共同研究的事实。","疼痛可以在原因尚未确定前真实发生；但疼痛真实，不等于设备已经被证明是唯一原因。"],"answer":3,"explanations":["记录影响公共证据，但不会创造身体经验本身。没有记录不等于疼痛没有发生。","经验与原因解释必须区分。设备可能是原因，也可能存在疾病、姿势或多因素共同作用。","立场差异不会取消共同现实。疼痛、设备条件和医学原因都可以进入进一步调查。","正确。它同时保护第一人称经验的现实地位，又拒绝把经验直接升级为唯一因果解释。"],"trap":"一端把“未记录”当作“不存在”，另一端把“经验真实”当作“原因已明”。","cardTitle":"前符号经验接口","card":"身体可能先于明确理论承受现实：疼痛、饥饿、疲劳可以先发生，后被命名和解释。经验可以真实，而原因仍然未决。"},{"section":"现实与符号","title":"模型制造自己的证据","stem":"某公司用效率模型把员工甲评为“低效率”，随后据此安排更差的班次并减少休息。三个月后甲的表现进一步下降。公司说：“后来的数据证明我们最初评分完全正确。”最严谨的是：","options":["后来的数据是真实数据，所以已经独立证明初始模型。","模型一旦改变了现实，就必然是错误模型。","后来的表现具有现实意义，但由于评分参与改变了工作条件，不能未经分析就把结果当作初始评分的独立证明。","只要理论参与现实，就永远无法检验理论。"],"answer":2,"explanations":["数据可以真实，但“真实”不等于“独立”。关键是评分是否参与制造了后来观察到的结果。","改变现实本身不说明模型对错。很多正确或错误的理论都可能改变行为。","正确。这里要求区分发现了原有关系，还是通过制度安排参与制造了后来关系。","反身性增加了识别难度，却不会使检验原则上不可能；可以寻找外部比较、不同制度条件或独立证据。"],"trap":"把理论参与制造的后果，未经分析直接当作理论的独立证据。","cardTitle":"反身性","card":"社会理论与自然天文学不同：市场参与者、企业和政府会读取理论并据此行动。理论可能同时描述现实、改变现实，再观察被自己改变后的现实。"},{"section":"现实与符号","title":"十份报告","stem":"某项政策获得十份研究报告支持。后来发现十份报告标题、作者和图表都不同，却全部依赖同一份未经独立核查的原始数据库。以下判断最准确的是：","options":["作者不同，所以十份报告就是十份独立证据。","共同使用数据意味着十份报告都必然错误。","只要最终结论一致，就能反向证明原数据库可靠。","支持材料的数量增加了，但证据独立性未必增加；共同上游误差可能被重复放大。"],"answer":3,"explanations":["表面来源不同不等于误差来源独立。真正要问的是它们是否共享同一上游材料与假设。","共享数据只说明存在共同误差风险，并不能直接证明结论错误。","多个下游结论一致可能只是同一上游信息的复制，不能循环地反证数据库可靠。","正确。这里区分了“符号复制的规模”和“独立现实支持的增加”。"],"trap":"把重复传播误当成独立交叉验证。","cardTitle":"证据独立性","card":"十个来源如果都引用同一个错误记录，可能只是一条错误被复制十次。交叉证据的关键不是数量，而是来源、方法和误差结构是否具有足够独立性。"},{"section":"早期希腊哲学","title":"阿那克西曼德的无定者","stem":"阿那克西曼德没有继续选择水、火等具体可见元素作为世界的根本，而提出后来被称作 apeiron 的原则，常译为“无定者”“无限者”或“无界者”。甲说：“看不见，所以没有认识价值。”乙说：“它解决了一个理论困难，所以已经被证明真实存在。”最准确的是：","options":["甲正确：有限认识只能研究直接感官对象。","乙正确：解释力足以证明存在。","两人的结论都过强：不可直接看见不等于不能成为理论对象，而解决解释困难也不等于已经获得独立现实支持。","两人都正确，因为抽象对象既存在又不存在。"],"answer":2,"explanations":["科学和历史研究大量依靠间接证据；“不能直接看见”不是取消认识资格的充分理由。","解释一个困难是理论优势，但解释力与存在证明仍需区分。","正确。这一选项同时反对朴素直接经验主义和把理论成功直接升级成本体论证明。","这不是对两种主张的严谨区分，而是用含混的存在说法回避问题。"],"trap":"把“不可直接看见”当作“不可认识”，或把“解释得好”当作“已经存在论证成”。","cardTitle":"apeiron（无定者）","card":"阿那克西曼德的重要转折，是把解释原则推进到不必是眼前某种具体物质的层次。抽象可以扩大认识，但抽象原则仍需要说明它解决什么问题、凭什么得到支持、什么材料会迫使我们改选其他解释。"},{"section":"早期希腊哲学","title":"毕达哥拉斯与数","stem":"毕达哥拉斯传统发现，在其他条件相近时，简单弦长比例与某些协和音程之间存在稳定关系。有人据此说：“既然音乐和谐可以由比例解释，所以世界本质上就是数。”最严谨的是：","options":["数学结构的形式有效、数学关系对现实有解释力，与“现实本体就是数”是不同强度的主张。","数学只处理人造符号，所以不能对现实提供任何知识。","只要一个对象能被数学描述，它就已经被完整解释。","世界本质就是数，因为可重复比例已经构成本体论证明。"],"answer":0,"explanations":["正确。结构解释力可以很强，但不能无缝跳到“世界最终是什么”的本体论结论。","数学模型可以经由测量、预测和工程应用与现实形成高度稳定的关系。","数学描述可能只抓住对象的一部分关系，不能因可形式化就宣称已经穷尽。","这是从成功关系直接跳到本体论同一。"],"trap":"把“数学能描述现实”升级成“现实就是数学”。","cardTitle":"毕达哥拉斯传统","card":"毕达哥拉斯本人没有留下可确证著作，很多数学发现和传说来自后来的传统。真正重要的思想史转折，是材料不同的对象可以表现出相同的比例结构。"},{"section":"早期希腊哲学","title":"赫拉克利特的河流","stem":"赫拉克利特常被浓缩为“人不能两次踏进同一条河流”甚至“一切皆流”。较可靠的河流片段也可被理解为：水不断更换，而某些关系仍保持连续。以下判断最准确的是：","options":["只要组成部分变化，对象就不再是原对象。","对象的同一性不必要求所有组成部分不变；判断“仍是同一个对象”要说明时间、尺度以及保持了什么关系。","只要名称不变，对象就保持完全同一。","既然变化与同一可以并存，就说明一切同一性判断都只是主观选择。"],"answer":1,"explanations":["这把组成材料的连续性当成唯一同一标准，忽略关系、结构和尺度。","正确。它把同一性变成一个需要说明条件的判断，而不是二选一的绝对属性。","名称可以延续，但实际关系可能已经完全改变。","条件性不等于任意性；同一性仍可依据具体关系接受现实检验。"],"trap":"把“变化”与“同一”强制设成互斥，或反过来用名称代替现实连续性。","cardTitle":"赫拉克利特与“一切皆流”","card":"“一切皆流”是后世高度压缩的表达。河流片段的思想价值之一，恰恰可能在于变化与持续秩序如何同时成立。思想史名言本身也需要回到文本证据。"},{"section":"早期希腊哲学","title":"巴门尼德的“是”","stem":"巴门尼德把思想、可说性、“是”和存在问题紧密联系起来。一名学生总结：“只要一个东西能被想到，它就必然存在。”最准确的是：","options":["基本正确，只要心理表象足够清晰即可。","完全错误，因为巴门尼德只讨论语言，不讨论存在。","只有无法想象的东西才不具有存在资格。","过度简化。巴门尼德追问的是何种“所是”能够成为严格思想对象，并不是给每一个心理表象都赋予存在资格。"],"answer":3,"explanations":["把“可思想”缩成普通心理想象，会把巴门尼德的严格存在问题变成“想到即存在”。","巴门尼德恰恰把思想与存在问题紧密连接，不只是语言技巧。","这仍把心理可想象性直接当成存在判据。","正确。幻想金山可以进入意识，却不因此满足巴门尼德对严格“所是”的要求。"],"trap":"把严格的存在论问题心理化成“我想到，所以它存在”。","cardTitle":"巴门尼德的“是”","card":"希腊语中的“是”牵涉存在、谓述与必然性等复杂问题。巴门尼德的价值不在一句口号，而在他逼迫思想先说明：我们说某物‘是’时，究竟承担了什么。"},{"section":"柏拉图与知识","title":"多数人的决定","stem":"公元前399年，雅典通过公共程序审判并处死苏格拉底。柏拉图由此面对一个重要问题：为什么拥有法律、公开辩论和多数决定程序的城邦，仍可能做出值得怀疑的决定？最准确的是：","options":["多数决定可以解决“由谁作决定”的程序问题，却不能仅凭人数自动解决“决定是否正当”的问题。","既然多数可能错误，所以少数哲学家应永久拥有决定权。","程序合法就已经同时证明结果正义。","苏格拉底之死足以证明所有民主制度必然错误。"],"answer":0,"explanations":["正确。程序事实、知识判断和规范正当性需要区分。","从多数可能犯错不能直接推出哲学家统治的正当性，这需要另行论证。","程序合法性与规范正当性不是同一个概念。","单一历史事件不能直接推出所有制度、所有时期的必然结论。"],"trap":"从“程序不能保证正确”直接跳到“某种替代权力因此正当”。","cardTitle":"苏格拉底之死与柏拉图","card":"柏拉图面对的不是简单的“民主好不好”，而是更深的尺度问题：多数、程序、修辞与知识之间是什么关系？谁决定，不自动等于决定正确。"},{"section":"柏拉图与知识","title":"理念是不是符号","stem":"有人读到“现实不等于关于现实的理论”，于是说：“柏拉图的理念也是一个概念，所以理念只是人造符号；既然符号不是现实，理念论已经被直接驳倒。”最准确的是：","options":["正确，只要一个东西能被语言说出，它就只能是语言。","不充分。我们关于“理念”的表达当然是符号，但柏拉图主张的是：理念所指向的对象独立于人的意见和感性事物；批评必须回应这个更强的主张。","错误，因为柏拉图的理念已经被证明就是现实本身。","正确，因为一切形而上学问题都没有现实意义。"],"answer":1,"explanations":["语言表达是符号，不等于表达所指称的对象也只能是符号。","正确。要批判一个理论，先要按它自身最强的现实承诺来理解，而不是先把它翻译成自己的框架。","这反过来把柏拉图的主张直接当成已证明事实。","形而上学主张可以被批判，但不能仅凭“它是形而上学”就取消其问题意义。"],"trap":"先把对手的概念改写成自己的术语，再宣布自己的术语体系获胜。","cardTitle":"chorismos（分离）","card":"后世常用 chorismos 讨论柏拉图理念与感性事物的“分离”。柏拉图是否主张简单的两个世界，存在解释争议；学习思想史要区分文本、重构与后世通俗化。"},{"section":"柏拉图与知识","title":"美诺悖论","stem":"《美诺篇》提出：如果完全不知道自己寻找什么，即使找到也无法认出；如果已经知道，又何必寻找？柏拉图以“回忆说”回应。最严谨的是：","options":["只要回忆说今天难以接受，美诺悖论也失去价值。","奴隶男孩的几何推理已经经验性证明灵魂出生前掌握知识。","一个哲学问题只有在它最初的答案正确时才有价值。","美诺悖论提出了一个关于学习如何可能的真实困难；接受问题，不等于必须接受柏拉图关于灵魂先天认识理念的答案。"],"answer":3,"explanations":["问题与答案可以分开评价。一个旧答案失效，不会自动取消问题本身。","这个场景是柏拉图论证的一部分，并不能直接承担现代意义上的经验性灵魂存在证明。","思想史恰恰充满“问题仍然重要、原答案可以被修改”的情况。","正确。严谨阅读需要保留哲学家提出的问题，同时独立评估他给出的解决方案。"],"trap":"把“问题有效性”与“原答案有效性”捆绑。","cardTitle":"美诺悖论","card":"美诺悖论逼问：不知道目标时如何开始寻找？柏拉图用回忆说回答，但今天完全可以保留这个认识论难题，同时拒绝他的灵魂前世理论。"},{"section":"柏拉图与知识","title":"正确意见","stem":"一个游客不知道去某城的道路。他随便猜“往左走”，结果真的到了目的地。按照《美诺篇》对正确意见与知识的区分，最准确的是：","options":["结果正确，所以已经拥有完整知识。","没有理由，所以这次判断完全没有认识价值。","他可能持有碰巧正确的意见，但若无法说明为什么这样判断，这种正确还不能与知识完全等同。","只要连续猜中足够多次，正确意见就自动变成知识。"],"answer":2,"explanations":["结果正确只证明这次判断碰巧命中，不说明主体掌握了稳定理由。","正确意见可以指导行动，仍有认识价值，只是其资格不同于有理由支撑的知识。","正确。柏拉图的重点是“碰巧正确”和“知道为什么正确”的区别。","重复成功会增加支持，但如果理由结构仍未知，并不能仅按次数自动完成知识资格转换。"],"trap":"把“结果正确”直接等同“已经知道”。","cardTitle":"代达罗斯雕像","card":"柏拉图把没有被理由“拴住”的正确意见比作代达罗斯的雕像：不拴住就会跑掉。这个比喻至今仍适合讨论“模型答对”和“真正理解”的区别。"},{"section":"柏拉图与知识","title":"数学圆证明了什么","stem":"现实中画出的圆总有误差，数学上的圆却可被严格定义，工程师还能用数学模型设计现实中的圆形构件。有人说：“这证明在所有具体圆之外，一定独立存在一个完美的‘圆本身’。”最严谨的是：","options":["数学精确性已经直接证明数学对象独立存在。","抽象数学不能提供任何关于现实的知识。","现实圆有误差，因此严格圆概念本身没有意义。","数学结构的形式有效、数学模型对现实的适用，以及数学对象是否具有独立存在地位，是三个不同的问题；前两个不能自动证明第三个。"],"answer":3,"explanations":["形式上的严格性本身不能直接完成本体论证明。","工程、物理和测量恰恰说明抽象数学可以与现实建立强关系。","抽象概念可以非常有用，不需要现实对象完美实例化。","正确。这里必须把形式、经验适用和本体论承诺分层。"],"trap":"把“形式有效”与“现实适用”再升级成“独立实体必然存在”。","cardTitle":"数学与理念","card":"柏拉图重视数学，因为数学迫使思想超出具体感性图像去处理普遍关系。但“数学能精确思考”与“数学对象以何种方式存在”仍是不同问题。"}];
+let qs=[];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function prepare(){
+ qs=JSON.parse(JSON.stringify(base));
+ shuffle(qs);
+ qs.forEach(q=>{
+   const idx=[0,1,2,3];shuffle(idx);
+   const no=[],ne=[];let na=0;
+   idx.forEach((old,n)=>{no.push(q.options[old]);ne.push(q.explanations[old]);if(old===q.answer)na=n});
+   q.options=no;q.explanations=ne;q.answer=na;
+ });
+}
+function render(){
+ const root=document.getElementById("quiz");root.innerHTML="";
+ qs.forEach((q,i)=>{
+   const el=document.createElement("section");el.className="card";
+   el.innerHTML='<span class="section">'+q.section+'</span><div class="qtitle">第 '+(i+1)+' 题 · '+q.title+'</div><div class="stem">'+q.stem+'</div>'+
+     q.options.map((v,j)=>'<label class="option"><input type="radio" name="q'+i+'" value="'+j+'"><strong>'+String.fromCharCode(65+j)+'.</strong> '+v+'</label>').join("");
+   root.appendChild(el);
+ });
+ updateProgress();
+}
+function updateProgress(){
+ let n=0;qs.forEach((q,i)=>{if(document.querySelector('input[name="q'+i+'"]:checked'))n++});
+ document.getElementById("prog").style.width=(n/qs.length*100)+"%";
+ document.getElementById("progText").textContent=n+" / "+qs.length;
+}
+document.addEventListener("change",e=>{if(e.target.matches('input[type=radio]'))updateProgress()});
+function submitQuiz(){
+ const chosen=[],missing=[];
+ qs.forEach((q,i)=>{const el=document.querySelector('input[name="q'+i+'"]:checked');if(!el)missing.push(i+1);chosen.push(el?+el.value:null)});
+ if(missing.length){alert("还有未作答题目："+missing.join("、"));return}
+ let correct=0;const mods={};
+ qs.forEach((q,i)=>{if(!mods[q.section])mods[q.section]={c:0,n:0};mods[q.section].n++;if(chosen[i]===q.answer){correct++;mods[q.section].c++}});
+ const pct=Math.round(correct/qs.length*100);
+ document.getElementById("score").textContent="总分："+correct+" / "+qs.length+"（"+pct+"%）";
+ document.getElementById("summary").textContent=pct>=90?"你对“现实—有限现象—经验—符号”之间的层级边界已经相当稳定。":pct>=75?"整体较稳，错误主要会出现在解释力、本体论承诺或证据独立性之间的细微跨越。":pct>=60?"已经能识别明显越权，但复杂思想史材料中仍容易把“部分成立”误当成“整体成立”。":"建议重新做题时，只问一个问题：这个选项比材料多承诺了什么？";
+ const metrics=document.getElementById("metrics");metrics.innerHTML="";
+ Object.keys(mods).forEach(k=>{const p=Math.round(mods[k].c/mods[k].n*100);metrics.innerHTML+='<div class="metric"><div>'+k+'</div><b>'+p+'</b><span>%</span><div class="bar"><span style="width:'+p+'%"></span></div></div>'});
+ const ar=document.getElementById("analysis");ar.innerHTML="";
+ qs.forEach((q,i)=>{
+   const box=document.createElement("section");box.className="card";
+   let opts="";
+   q.options.forEach((v,j)=>{const ok=j===q.answer;opts+='<div class="answer '+(ok?"correct":"wrong")+'"><strong>'+String.fromCharCode(65+j)+'. '+(ok?"✓ 更准确":"✗ 不够准确")+(chosen[i]===j?" · 你的选择":"")+'</strong><br>'+v+'<br><span>'+q.explanations[j]+'</span></div>'});
+   box.innerHTML='<span class="section">'+q.section+'</span><div class="qtitle">解析 '+(i+1)+' · '+q.title+'</div>'+opts+
+     '<div class="trap"><strong>这一题的越权陷阱：</strong>'+q.trap+'</div>'+
+     '<div class="knowledge"><h4>做完这一题，你顺便应该知道：'+q.cardTitle+'</h4>'+q.card+'</div>';
+   ar.appendChild(box);
+ });
+ document.getElementById("results").style.display="block";document.getElementById("submit").style.display="none";document.getElementById("results").scrollIntoView({behavior:"smooth"});
+}
+function resetAll(){
+ document.querySelectorAll('input[type=radio]').forEach(x=>x.checked=false);
+ document.getElementById("results").style.display="none";document.getElementById("submit").style.display="inline-block";updateProgress();window.scrollTo({top:0,behavior:"smooth"});
+}
+document.getElementById("submit").onclick=submitQuiz;document.getElementById("reset").onclick=resetAll;
+prepare();render();
+</script>
+</body></html>
